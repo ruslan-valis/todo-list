@@ -65,6 +65,14 @@ atlassian-ide-plugin.xml
 !app/cache/.gitkeep
 !app/logs/.gitkeep
 
+### symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/var
+
 # Email spool folder
 /app/spool/*
 
