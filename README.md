@@ -4,7 +4,8 @@
 ## Install
 
 ``` bash
-$ composer install
+$ docker-compose up
+$ docker-compose exec app composer install
 ```
 
 ## Usage
@@ -17,6 +18,12 @@ $ composer install
 
 ``` bash
 $ vendor/bin/phpunit
+```
+
+## Cleanup
+
+``` bash
+$ docker-compose down --rmi all
 ```
 
 ## Credits
