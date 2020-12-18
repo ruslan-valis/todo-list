@@ -5,20 +5,19 @@
 
 ``` bash
 $ docker-compose up
-$ docker-compose exec app composer install
 ```
 
 ## Usage
 
 Execute symfony console command 
 ``` bash
-docker-compose exec app php bin/console %ARGUMENTS%
+docker-compose exec php-fpm php bin/console
 ```
 
 ## Testing
 
 ``` bash
-$ docker-compose exec app php bin/phpunit
+$ docker-compose exec php-fpm php bin/phpunit
 ```
 
 ## Cleanup
