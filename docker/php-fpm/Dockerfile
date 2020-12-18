@@ -21,5 +21,5 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 WORKDIR /var/www
 
 # Wait for database startup and start php-fpm
-CMD composer install ; wait-for-it mysql:3306 -- bin/console doctrine:migrations:migrate ; bin/console doctrine:fixtures:load ;  php-fpm
+CMD composer install ; wait-for-it mysql:3306 -- bin/console doctrine:migrations:migrate -n ; bin/console doctrine:fixtures:load --append -n;  php-fpm
 EXPOSE 9000

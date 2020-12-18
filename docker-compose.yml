@@ -8,6 +8,8 @@ services:
         container_name: todo_list-php_fpm
         restart: unless-stopped
         tty: true
+        environment:
+            - DATABASE_URL=mysql://${DATABASE_USER}:${DATABASE_PASSWORD}@mysql:3306/${DATABASE_NAME}
         working_dir: /var/www/
         volumes:
             - ./:/var/www
