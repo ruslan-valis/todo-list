@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container my-5">
+
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title">{{ app_name }}</div>
+                {% if is_granted('ROLE_USER') %}
+                    <ul>
+                        <li>
+                            <a href="{{ path('api_entrypoint') }}">API</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('app_profile') }}">Edit Profile</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('app_logout') }}">Log Out</a>
+                        </li>
+                    </ul>
+                {% else %}
+
+                    <div class="row justify-content-md-center">
+                        <div class="col col-lg-6">
+
+                            {{ form(form, {'action': path('app_login'), 'method': 'POST'}) }}
+
+                        </div>
+                    </div>
+
+                {% endif %}
+
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
