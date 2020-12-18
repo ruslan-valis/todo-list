@@ -10,14 +10,15 @@ $ docker-compose exec app composer install
 
 ## Usage
 
+Execute symfony console command 
 ``` bash
-
+docker-compose exec app php bin/console %ARGUMENTS%
 ```
 
 ## Testing
 
 ``` bash
-$ vendor/bin/phpunit
+$ docker-compose exec app php bin/phpunit
 ```
 
 ## Cleanup
