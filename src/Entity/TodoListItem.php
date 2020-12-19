@@ -133,4 +133,27 @@ class TodoListItem
 
         return $this;
     }
+
+    public function toArray(): array
+    {
+        return [
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'description' => $this->getDescription(),
+            'is_checked' => $this->getIsChecked(),
+            'created_at' => $this->_renderCreatedAt(),
+            'updated_at' => $this->_renderUpdatedAt(),
+        ];
+    }
+
+    private function _renderCreatedAt(): int {
+        $createdAt = $this->getCreatedAt();
+        return $createdAt ? $createdAt->getTimestamp() : 0;
+    }
+
+    private function _renderUpdatedAt(): int {
+        $updatedAt = $this->getUpdatedAt();
+        return $updatedAt ? $updatedAt->getTimestamp() : 0;
+    }
+
 }
