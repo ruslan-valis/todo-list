@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use App\Repository\TodoListRepository;
 use DateTimeInterface;
-use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -74,18 +74,18 @@ class TodoList
     }
 
     /**
-     * @return ArrayCollection
+     * @return ?Collection
      */
-    public function getItems(): ArrayCollection
+    public function getItems(): ?Collection
     {
         return $this->items;
     }
 
     /**
-     * @param ArrayCollection $items
+     * @param Collection $items
      * @return self
      */
-    public function setItems(ArrayCollection $items): self
+    public function setItems(Collection $items): self
     {
         $this->items = $items;
 
@@ -122,10 +122,38 @@ class TodoList
             'id' => $this->getId(),
             'name' => $this->getName(),
             'description' => $this->getDescription(),
-            'created_at' => $this->getCreatedAt(),
-            'updated_at' => $this->getUpdatedAt(),
-            'items' => $this->getItems()->toArray()
+            'created_at' => $this->_renderCreatedAt(),
+            'updated_at' => $this->_renderUpdatedAt(),
+            'items' => $this->_renderListItems() // TODO: Option is to remove items array from here and create separate REST group for receiving items from list (strict REST way)
         ];
+    }
+
+    private function _renderCreatedAt(): int {
+        $createdAt = $this->getCreatedAt();
+        return $createdAt ? $createdAt->getTimestamp() : 0;
+    }
+
+    private function _renderUpdatedAt(): int {
+        $updatedAt = $this->getUpdatedAt();
+        return $updatedAt ? $updatedAt->getTimestamp() : 0;
+    }
+
+    // TODO: Define ListItemsCollection instead?
+    private function _renderListItems(): array
+    {
+        $result = [];
+
+        $listItems = $this->getItems();
+        if (!$listItems) {
+            return $result;
+        }
+
+        /** @var TodoListItem $listItem */
+        foreach ($listItems as $listItem) {
+            $result[] = $listItem->toArray();
+        }
+
+        return $result;
     }
 
 }
