@@ -1,0 +1,336 @@
+{
+	"info": {
+		"_postman_id": "c85e4f7a-8d7c-4f09-9159-743270627efc",
+		"name": "todo-list",
+		"description": "Simple REST API to manage tasks creation / visualization (like a TODO list)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "list",
+			"item": [
+				{
+					"name": "/list",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"test-name-1\",\r\n    \"description\": \"test-description-1\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/list/${id}",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"test-name-3\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost/list/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"list",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/list/${id}",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"test-name-3\",\r\n    \"description\": \"test-description-2\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost/list/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"list",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"test-name-1\",\r\n    \"description\": \"test-description-1\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/list/${id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/list/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"list",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/list/${id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/list/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"list",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "list-item",
+			"item": [
+				{
+					"name": "/list/${listId}/item",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"list-item-5-1\",\r\n    \"description\": \"list-item-5-1-description\",\r\n    \"is_checked\": true\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost/list/5/item",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"list",
+								"5",
+								"item"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/list/${listId}/item/${id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/list/5/item/29",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"list",
+								"5",
+								"item",
+								"29"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/list/${listId}/item",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"test-name-1\",\r\n    \"description\": \"test-description-1\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost/list/1/item",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"list",
+								"1",
+								"item"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/list/${listId}/item/${id}",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"test-name-3\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost/list/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"list",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/list/${listId}/item/${id}",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"test-name-3\",\r\n    \"description\": \"test-description-2\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost/list/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"list",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/list/${listId}/item/${id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/list/1/item/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"list",
+								"1",
+								"item",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "HOST",
+			"value": "localhost"
+		}
+	]
+}
