@@ -2,8 +2,12 @@
 
 namespace App\Repository;
 
+use App\Entity\TodoList;
 use App\Entity\TodoListItem;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -14,37 +18,77 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class TodoListItemRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    /**
+     * @var EntityManagerInterface
+     */
+    private $manager;
+
+    public function __construct(ManagerRegistry $registry, EntityManagerInterface $manager)
     {
         parent::__construct($registry, TodoListItem::class);
+        $this->manager = $manager;
     }
 
-    // /**
-    //  * @return TodoListItem[] Returns an array of TodoListItem objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @param TodoList $todoList
+     * @param string $name
+     * @param string $description
+     * @param bool $is_checked
+     * @return TodoListItem
+     */
+    public function create(TodoList $todoList, string $name, string $description, bool $is_checked): TodoListItem
     {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('t.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $todoListItem = new TodoListItem();
 
-    /*
-    public function findOneBySomeField($value): ?TodoListItem
+        $todoListItem->setList($todoList);
+        $todoListItem->setName($name);
+        $todoListItem->setDescription($description);
+        $todoListItem->setIsChecked($is_checked);
+        $todoListItem->setCreatedAt(new DateTime());
+
+        $this->manager->persist($todoListItem);
+        $this->manager->flush();
+
+        return $todoListItem;
+    }
+
+    /**
+     * @param TodoListItem $todoListItem
+     * @return TodoListItem
+     */
+    public function update(TodoListItem $todoListItem): TodoListItem
+    {
+        $todoListItem->setUpdatedAt(new DateTime());
+
+        $this->manager->persist($todoListItem);
+        $this->manager->flush();
+
+        return $todoListItem;
+    }
+
+    /**
+     * @param TodoListItem $todoListItem
+     */
+    public function remove(TodoListItem $todoListItem): void
+    {
+        // TODO: Implement database not remove but mark as removed?
+        $this->manager->remove($todoListItem);
+        $this->manager->flush();
+    }
+
+    /**
+     * @param $value
+     * @return TodoListItem|null
+     * @throws NonUniqueResultException
+     */
+    public function findOneById($value): ?TodoListItem
     {
         return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
+            ->andWhere('t.id = :val')
             ->setParameter('val', $value)
             ->getQuery()
             ->getOneOrNullResult()
-        ;
+            ;
     }
-    */
+
 }
