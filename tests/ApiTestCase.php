@@ -23,8 +23,8 @@ use Symfony\Component\HttpFoundation\Response as HttpResponse;
  */
 abstract class ApiTestCase extends TestCase
 {
-    private const CLIENT_URL = "http://localhost";
-    private const IS_EXCEPTIONS_ALLOWED = false;
+    protected const CLIENT_URL = "http://localhost";
+    protected const IS_EXCEPTIONS_ALLOWED = false;
 
     /**
      * @var Generator
